@@ -6,8 +6,8 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:/home/angry/.atuin/bin:$PATH" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:/home/angry/.atuin/bin:$PATH"
 fi
 export PATH
 
@@ -32,6 +32,9 @@ alias lsa='ls -la --color=auto'
 cd(){
     builtin cd "$@" && ls -l --color=auto
 }
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
 
 # Custom bash prompt
 PS1='\u\[\e[35m\]▴\[\e[0m\]\h [\W] \[\e[35m\]❯\[\e[0m\] '
